@@ -6,7 +6,7 @@ void read (double &a, double &b, double &c);
 
 void solve (double a, double b, double c, double &x1, double &x2);
 
-void write_solution (int p, double x1, double x2);
+void write_solution (double x1, double x2);
 
 int main()
 {
