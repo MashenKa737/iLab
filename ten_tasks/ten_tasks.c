@@ -20,24 +20,25 @@ void resheto (int fl[])
 
 void task_1A()
 {
-    int fl[ARR_SIZE], num[10000];
+    int fl[ARR_SIZE];
+    int num = 0;
     int i = 0, N = 0;
 
-    scanf("%d", &N);
-
-    for(i = 0; i < N; i++)
-        scanf("%d", &num[i]);
     fl[0] = 0;
     fl[1] = 0;
     for (i = 2; i < ARR_SIZE; i++)
         fl[i] = 1;
     resheto(fl);
 
+    scanf("%d", &N);
+
     for(i = 0; i < N; i++)
     {
-        if (fl[num[i]] == 1)
-            printf("%d ", num[i]);
+        scanf("%d", &num);
+        if (fl[num] == 1)
+            printf("%d ", num);
     }
+
 }
 
 void task_1B()
