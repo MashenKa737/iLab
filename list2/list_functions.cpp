@@ -12,6 +12,8 @@ List2_t *ctor_List()
 
 Errors push_head(List2_t *sp, int val)
 {
+    if(sp == NULL)
+        return FALSE_LIST;
     Elem_t *nelem = (Elem_t*)malloc(sizeof(Elem_t));
     if(nelem == NULL)
         return ERROR_MEMORY;
@@ -36,6 +38,8 @@ Errors push_head(List2_t *sp, int val)
 
 Errors push_tail(List2_t *sp, int val)
 {
+    if(sp == NULL)
+        return FALSE_LIST;
     Elem_t *nelem = (Elem_t*)malloc(sizeof(Elem_t));
     if(nelem == NULL)
         return ERROR_MEMORY;
@@ -61,7 +65,7 @@ Errors push_tail(List2_t *sp, int val)
 Errors pop_head(List2_t *sp, int *a)
 {
     if(!sp)
-        return FALSE_POINT;
+        return FALSE_LIST;
     if(!sp->head)
         return ERR_EMPTY;
     sp->head->next->last = NULL;
@@ -76,7 +80,7 @@ Errors pop_head(List2_t *sp, int *a)
 Errors pop_tail(List2_t *sp, int *a)
 {
     if(!sp)
-        return FALSE_POINT;
+        return FALSE_LIST;
     if(!sp->tail)
         return ERR_EMPTY;
     sp->tail->last->next = NULL;
@@ -112,7 +116,7 @@ Elem_t *get_point(List2_t *sp, int nom)
 Errors insert_after_point(List2_t * sp, Elem_t *point, int val)
 {
     if(!sp)
-        return FALSE_POINT;
+        return FALSE_LIST;
     Elem_t *nelem = (Elem_t*)malloc(sizeof(Elem_t));
     if(nelem == NULL)
         return ERROR_MEMORY;
@@ -133,6 +137,9 @@ Errors insert_nom(List2_t *sp, int nom, int val)
 {
     Errors err;
     Elem_t *point;
+
+    if(sp == NULL)
+        return FALSE_LIST;
     if (nom > sp->list_size)
         return NOM_FALSE;
     if (nom == 0)
@@ -151,6 +158,8 @@ Errors insert_nom(List2_t *sp, int nom, int val)
 
 Errors delete_point(List2_t *sp, Elem_t *point)
 {
+    if(sp == NULL)
+        return FALSE_LIST;
     if(sp->list_size == 0)
         return ERR_EMPTY;
     if(point->last)
@@ -170,6 +179,9 @@ Errors delete_nom(List2_t *sp, int nom)
 {
     Elem_t *point;
     Errors err;
+
+    if(sp == NULL)
+        return FALSE_LIST;
     if (nom > sp->list_size)
         return NOM_FALSE;
     point = get_point(sp, nom);
@@ -181,7 +193,7 @@ Errors delete_list(List2_t *sp)
 {
     Elem_t *point;
     if(sp == NULL)
-        return FALSE_POINT;
+        return FALSE_LIST;
     point = sp->head;
     while(sp->head)
     {
@@ -191,4 +203,19 @@ Errors delete_list(List2_t *sp)
     }
     free(sp);
     return OK;
+}
+
+Errors if_in_list(List2_t *sp, Elem_t *point)
+{
+    Elem_t *p = sp->head;
+    int i = 0;
+    if(sp == NULL)
+        return FALSE_LIST;
+    for (i = 0; i < sp->list_size; i++)
+    {
+        if (p == point)
+            return OK;
+        p = p->next;
+    }
+    return FALSE_POINT;
 }

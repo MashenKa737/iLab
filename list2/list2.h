@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <assert.h>
 
-enum Errors {OK, ERROR_MEMORY, FALSE_POINT, NOM_FALSE, ERR_EMPTY};
+enum Errors {OK, ERROR_MEMORY, FALSE_POINT, FALSE_LIST, NOM_FALSE, ERR_EMPTY};
 
 typedef struct Elem
 {
@@ -50,3 +50,5 @@ Errors delete_nom(List2_t *sp, int nom);
 
 //this function deletes list;
 Errors delete_list(List2_t *sp);
+
+Errors if_in_list(List2_t *sp, Elem_t *point);

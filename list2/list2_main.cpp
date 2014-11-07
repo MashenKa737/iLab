@@ -10,14 +10,17 @@ int main()
     sp = ctor_List();
     for(i = 0; i < 5; i++)
         push_tail(sp, i);
-    for(i = 0; i < 2; i++)
+    for(i = 0; i < 3; i++)
         push_head(sp, 13);
 
     pop_tail(sp, &a);
     printf("last = %d\n", a);
-
     pop_head(sp, &a);
     printf("first = %d\n", a);
+
+    el = sp->head;
+    if(if_in_list(sp, el) == OK)
+        printf("point is OK\n");
 
     if (insert_nom(sp,2, -247) == OK)
     {
@@ -40,7 +43,7 @@ int main()
     {
         if(push_tail(sp, -777) == ERROR_MEMORY)
         {
-            printf("NO FREE MEMORY");
+            printf("\nNO FREE MEMORY");
             break;
         }
     }
