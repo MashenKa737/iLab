@@ -78,6 +78,7 @@ Errors pop_head(List2_t *sp)
     sp->head->next->last = NULL;
     if(sp->delete_elem(sp->head->value) != OK)
         return FALSE;
+    free(sp->head->value);
     Elem_t *point = sp->head->next;
     free(sp->head);
     sp->head = point;
@@ -93,6 +94,7 @@ Errors pop_tail(List2_t *sp)
         return ERR_EMPTY;
     if(sp->delete_elem(sp->tail->value) != OK)
         return FALSE;
+    free(sp->tail->value);
     sp->tail->last->next = NULL;
     Elem_t *point = sp->tail->last;
     free(sp->tail);

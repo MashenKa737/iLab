@@ -25,13 +25,14 @@ int main()
         insert_str_list(list_list, s);
     }
 
-    p = list_list->head;
+    /*p = list_list->head;
     for(i = 0; i < list_list->list_size; i++)
     {
         print_list(*(List2_t**)p->value);
         p = p->next;
-    }
+    }*/
 
+    delete_list(list_list);
     fclose(fin);
     return 0;
 }
@@ -94,11 +95,13 @@ Errors insert_list(void *list_to, const void *str_from)
 
 Errors delete_str(void* mstr)
 {
+    free(*(char**)mstr);
     return OK;
 }
 
 Errors delete_list(void* mlist)
 {
+    delete_list(*(List2_t**)mlist);
     return OK;
 }
 
