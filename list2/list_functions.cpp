@@ -185,6 +185,7 @@ Errors delete_point(List2_t *sp, Elem_t *point)
         sp->tail = sp->tail->last;
     if(sp->delete_elem(point->value) != OK)
         return FALSE;
+    free(point->value);
     free(point);
     sp->list_size--;
     return OK;
@@ -215,6 +216,7 @@ Errors delete_list(List2_t *sp)
         if(sp->delete_elem(sp->head->value) != OK)
             return FALSE;
         point = sp->head->next;
+	free(sp->head->value);
         free(sp->head);
         sp->head = point;
     }
