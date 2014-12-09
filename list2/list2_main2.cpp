@@ -4,7 +4,7 @@
 Errors insert_str(void *str_to, const void *str_from);
 Errors insert_list(void *list_to, const void *list_from);
 Errors delete_str(void* mstr);
-Errors delete_list(void* mlist);
+Errors delete_list_list(void* mlist);
 void print_list(List2_t *list_str);
 List2_t* if_letter(List2* sp, char* str);
 Errors insert_str_list(List2_t* list_list, char* s);
@@ -17,7 +17,7 @@ int main()
     Elem_t* p = NULL;
     FILE* fin = fopen("list_for.dat", "r");
 
-    list_list = ctor_List(sizeof(List2_t**), insert_list, delete_list);
+    list_list = ctor_List(sizeof(List2_t**), insert_list, delete_list_list);
     fscanf(fin, "%d", &n);
     for(i = 0; i < n; i++)
     {
@@ -25,12 +25,12 @@ int main()
         insert_str_list(list_list, s);
     }
 
-    /*p = list_list->head;
+    p = list_list->head;
     for(i = 0; i < list_list->list_size; i++)
     {
         print_list(*(List2_t**)p->value);
         p = p->next;
-    }*/
+    }
 
     delete_list(list_list);
     fclose(fin);
@@ -99,7 +99,7 @@ Errors delete_str(void* mstr)
     return OK;
 }
 
-Errors delete_list(void* mlist)
+Errors delete_list_list(void* mlist)
 {
     delete_list(*(List2_t**)mlist);
     return OK;
