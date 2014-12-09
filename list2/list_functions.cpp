@@ -234,3 +234,8 @@ Errors if_in_list(List2_t *sp, Elem_t *point)
     }
     return FALSE_POINT;
 }
+
+void* get_value(List2_t *sp, Elem_t *point)
+{
+    return point->value;
+}

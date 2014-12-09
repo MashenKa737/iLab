@@ -67,5 +67,6 @@ functions adding element can returns ERROR_MEMORY;
 functions deleting element can returns ERR_EMPTY;
 functions, uses insert_elem or delete_elem can return FALSE, if the user's function don't return OK.
 */
+void* get_value(List2_t *sp, Elem_t *point);
 
 #endif // LIST2_H
