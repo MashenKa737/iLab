@@ -1,0 +1,7 @@
+mov %eax $13
+met1: push %eax
+jmp met2
+push $12
+cmp
+je met1
+met2: push $-13
